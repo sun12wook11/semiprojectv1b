@@ -4,7 +4,7 @@ from starlette.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 
 member_router = APIRouter()
-templates = Jinja2Templates(directory='templates')
+templates = Jinja2Templates(directory='views/templates')
 
 @member_router.get("/join", response_class=HTMLResponse)
 async def join(request: Request):
