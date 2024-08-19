@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>세미프로젝트</title>
+</head>
+<body>
+    <div id="wrap">
+        <header><h1>세미프로젝트 V1</h1></header>
+        <nav>
+            <ul>
+                <li><a href="/views/static">Home</a></li>
+                <li><a href="/member/join">회원가입</a></li>
+                <li><a href="/member/login">로그인</a></li>
+                <li><a href="/board/list">게시판</a></li>
+                <li><a href="/member/myinfo">회원정보</a></li>
+            </ul>
+
+        </nav>
+        <hr>
+        <main>
+            <h2>회원가입</h2>
+            <form name="joinfrm" method="post">
+                <div><label for="userid">아이디</label>
+                     <input type="text" name="userid" id="userid"
+                            minlength="6" maxlength="18" required></div>
+                <div><label for="passwd">비밀번호</label>
+                    <input type="text" name="passwd" id="passwd"
+                           minlength="6" maxlength="18" required></div>
+                <div><label for="passwdre">비밀번호 확인</label>
+                    <input type="text" name="passwdre" id="passwdre"
+                           minlength="6" maxlength="18" required></div>
+                <div><label for="name">이름</label>
+                    <input type="text" name="name" id="name" required></div>
+                <div><label for="email">이메일</label>
+                    <input type="email" name="email" id="email" required></div>
+                <!--css 스타일시트나 자바스크립트 연계용으로 쓰기위해
+                    submit이 아닌 button으로 남겨둔다-->
+                <div><button type="submit" id="joinbtn">입력완료</button>
+                     <button type="reset" id="rstbtn">다시입력</button></div>
+            </form>
+        </main>
+        <hr>
+        <footer>
+
+            <p>copyright &copy; 2024. sunSfeed. all righs reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
