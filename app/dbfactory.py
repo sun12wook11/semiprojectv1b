@@ -15,7 +15,7 @@ def get_db():
         db.close()
 
 async def db_startup():
-    pass
+    member.Base.metadata.create_all(engine)
 
 async def db_shutdown():
     pass
