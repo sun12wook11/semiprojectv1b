@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from app.model import member
 from app.settings import config
 
-engine = create_engine(config.dbcon, echo=True)
+engine = create_engine(config.dbconn, echo=True)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
