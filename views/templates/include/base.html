@@ -15,12 +15,14 @@
     {% include 'include/header.html' %}
     <hr>
     <main>
-        {% block content %}
+        {% block main %}
         <!-- 여기에 메인 컨텐츠가 들어갑니다 -->
         {% endblock %}
     </main>
     <hr>
     {% include 'include/footer.html' %}
 </div>
+{% block script %}
+{% endblock %}
 </body>
 </html>

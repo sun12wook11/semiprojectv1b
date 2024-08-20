@@ -1,7 +1,5 @@
 from sqlalchemy import insert
-
 from app.model.member import Member
-
 
 class MemberService:
     @staticmethod
@@ -11,7 +9,7 @@ class MemberService:
             name=member.name, email=member.email)
         result = db.execute(stmt)
         db.commit()
-
         return result
 
 
+# memberCRUD - 인서트 구현

@@ -28,3 +28,6 @@ async def login(request: Request):
 @member_router.get("/myinfo", response_class=HTMLResponse)
 async def myinfo(request: Request):
     return templates.TemplateResponse("member/myinfo.html", {"request": request})
+
+
+# 엔드포인트 설정

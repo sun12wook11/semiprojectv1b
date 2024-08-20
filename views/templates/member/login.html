@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>세미프로젝트</title>
-    <link rel="stylesheet" href="/static/css/bs5/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/project.css">
+{% extends 'include/base.html' %}
 
-    <style>
+{% block title %}홈페이지 - 세미프로젝트{% endblock %}
 
-    </style>
-</head>
-<body>
-<div id="wrap" class="container">
-    <header class="py-3"><h1>세미프로젝트 V1</h1></header>
-    <nav>  <!--https://getbootstrap.kr/docs/5.3/components/navs-tabs/-->
-        <ul class="nav nav-fill">
-            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/member/join">회원가입</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/member/login">로그인</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/board/list">게시판</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/member/myinfo">회원정보</a></li>
-        </ul>
-    </nav>
-        <hr>
+{% block main %}
         <main>
             <h2>로그인</h2>
             <div class="d-flex justify-content-center align-items-center" style="height: 65vh">
@@ -39,11 +19,4 @@
                 </form>
             </div>
         </main>
-        <hr>
-        <footer>
-
-            <p class="text-center">copyright &copy; 2024. sunSfeed. all righs reserved.</p>
-        </footer>
-    </div>
-</body>
-</html>
+{% endblock %}
