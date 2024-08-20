@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>새미프로젝트</title>
+    <link rel="stylesheet" href="/static/css/bs5/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/project.css">
+    <style>
+    </style>
+
 </head>
 <body>
-    <div id="wrap">
-        <header><h1>새미프로젝트 V1</h1></header>
-        <nav>
-            <ul>
-                <li><a href="/views/static">Home</a></li>
-                <li><a href="/member/join">회원가입</a></li>
-                <li><a href="/member/login">로그인</a></li>
-                <li><a href="/board/list">게시판</a></li>
-                <li><a href="/member/myinfo">회원정보</a></li>
-            </ul>
+<div id="wrap" class="container">
+    <header class="py-3"><h1>세미프로젝트 V1</h1></header>
+    <nav>  <!--https://getbootstrap.kr/docs/5.3/components/navs-tabs/-->
+        <ul class="nav nav-fill">
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/member/join">회원가입</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/member/login">로그인</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/board/list">게시판</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/member/myinfo">회원정보</a></li>
+        </ul>
+    </nav>
 
-        </nav>
-        <hr>
-        <main>
-            <h2>회원정보</h2>
-            <table cellspacing="5">
-                <thead>
-                <tr>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
+    <hr>
+
+    <main>
+        <h2>회원정보</h2>
+        <div class="d-flex justify-content-center align-items-center" style="height: 65vh">
+            <table class="table w-25 table-bordered table-striped">
+
                 <tr>
                     <td>아이디</td>
                     <td>sunSfeed</td>
@@ -43,14 +45,16 @@
                     <td>가입일</td>
                     <td>2024.07.30</td>
                 </tr>
-                </tbody>
-            </table>
-        </main>
-        <hr>
-        <footer>
 
-            <p>copyright &copy; 2024. sunSfeed. all righs reserved.</p>
-        </footer>
+            </table>
+        </div>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p class="text-center">copyright &copy; 2024. sunSfeed. all righs reserved.</p>
+    </footer>
     </div>
 </body>
 </html>
