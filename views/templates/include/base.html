@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/bs5/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/project.css">
+    <style>
+        {% block styles %}
+        {% endblock %}
+    </style>
+</head>
+<body>
+<div id="wrap" class="container">
+    {% include 'include/header.html' %}
+    <hr>
+    <main>
+        {% block content %}
+        <!-- 여기에 메인 컨텐츠가 들어갑니다 -->
+        {% endblock %}
+    </main>
+    <hr>
+    {% include 'include/footer.html' %}
+</div>
+</body>
+</html>
