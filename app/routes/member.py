@@ -17,12 +17,18 @@ async def join(request: Request):
 
 @member_router.post("/join", response_class=HTMLResponse)
 async def joinok(member: NewMember, db: Session = Depends(get_db)):
-    print(member)
-    result = MemberService.insert_member(db, member)
-    print('처리결과: ', result.rowcount)
+    try:
+        print(member)
+        result = MemberService.insert_member(db, member)
+        print('처리결과: ', result.rowcount)
 
-    if result.rowcount > 0: #회원가입이 성공적으로 완료되면 로그인페이지로 전환
-       return RedirectResponse(url='/member/login', status_code=303)
+        #회원가입이 성공적으로 완료되면 로그인페이지로 전환
+        if result.rowcount > 0: #rowcount 변경된 행이 1개 이상이면 실행 = 회원가입 잘했으면 실행
+           return RedirectResponse(url='/member/login', status_code=303)
+
+    except Exception as ex:
+        print(f'▷▷▷ joinok 오류발생: {str(ex)}')
+        return RedirectResponse(url='/member/error', status_code=303)
 
 @member_router.get("/login", response_class=HTMLResponse)
 async def login(request: Request):
@@ -31,6 +37,11 @@ async def login(request: Request):
 @member_router.get("/myinfo", response_class=HTMLResponse)
 async def myinfo(request: Request):
     return templates.TemplateResponse("member/myinfo.html", {"request": request})
+
+@member_router.get("/error", response_class=HTMLResponse)
+async def error(request: Request):
+    return templates.TemplateResponse("member/error.html", {"request": request})
+
 
 
 # 엔드포인트 설정
