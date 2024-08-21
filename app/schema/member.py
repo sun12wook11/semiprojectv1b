@@ -4,5 +4,6 @@ class NewMember(BaseModel):
     passwd: str
     name: str
     email: str
+    captcha: str
 
 # 유효성 검사

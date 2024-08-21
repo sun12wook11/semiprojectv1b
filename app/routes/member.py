@@ -18,13 +18,18 @@ async def join(request: Request):
 @member_router.post("/join", response_class=HTMLResponse)
 async def joinok(member: NewMember, db: Session = Depends(get_db)):
     try:
-        print(member)
-        result = MemberService.insert_member(db, member)
-        print('처리결과: ', result.rowcount)
+        # 캡챠가 참이라면
+        if MemberService.check_captcha(member):
+            print(member)
+            result = MemberService.insert_member(db, member)
+            print('처리결과: ', result.rowcount)
 
-        #회원가입이 성공적으로 완료되면 로그인페이지로 전환
-        if result.rowcount > 0: #rowcount 변경된 행이 1개 이상이면 실행 = 회원가입 잘했으면 실행
-           return RedirectResponse(url='/member/login', status_code=303)
+            #회원가입이 성공적으로 완료되면 로그인페이지로 전환
+            if result.rowcount > 0: #rowcount 변경된 행이 1개 이상이면 실행 = 회원가입 잘했으면 실행
+               return RedirectResponse(url='/member/login', status_code=303)
+        # 캡챠 실패시 에러
+        else:
+            return RedirectResponse(url='/member/error', status_code=303)
 
     except Exception as ex:
         print(f'▷▷▷ joinok 오류발생: {str(ex)}')
