@@ -49,6 +49,20 @@ class MemberService:
             return result
 
         except SQLAlchemyError as ex:
-            print(f'▶▶▶ insert_member 오류발생 :  {str(ex)}')
+            print(f'▶▶▶ login_member 오류발생 :  {str(ex)}')
+
+    @staticmethod
+    def selectone_member(db, userid):
+        try:
+            # where 절 조건
+            find_uid = Member.userid == userid
+            stmt = select(Member).where(find_uid)
+            result = db.execute(stmt).scalars()
+
+            return result
+
+        except SQLAlchemyError as ex:
+            print(f'▶▶▶ selectone_member 오류발생 :  {str(ex)}')
+
 
 # memberCRUD - 인서트 구현

@@ -7,23 +7,24 @@
         <h2>회원정보</h2>
         <div class="d-flex justify-content-center align-items-center" style="height: 65vh">
             <table class="table w-25 table-bordered table-striped">
-
+                {% for in myinfo %}
                 <tr>
                     <td>아이디</td>
-                    <td>sunSfeed</td>
+                    <td>{{ m.userid }}</td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td>김선욱</td>
+                    <td>{{ m.name }}</td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td>sun12wook11@gmail.com</td>
+                    <td>{{ m.email }}</td>
                 </tr>
                 <tr>
                     <td>가입일</td>
-                    <td>2024.07.30</td>
+                    <td>{{ m.regdate.strftime('%Y-%m-%d %H:%M:%S')}}</td>
                 </tr>
+                {% endfor %}
 
             </table>
         </div>
