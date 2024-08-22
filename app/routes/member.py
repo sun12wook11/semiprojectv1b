@@ -47,14 +47,15 @@ async def loginok(req: Request, db: Session = Depends(get_db)):
         print('전송한 데이터 : ', data)
         redirect_url = '/member/loginfail' #로그인 실패시 loginfail 로 이동
 
-
-        if MemberService.login_member():    #로그인 성공시 myinfo로 이동
+        # M.서비스에서 쿼리문으로 판별할거임 거기서 T/F 값 여기로 받는다 생각하면 될 듯
+        if MemberService.login_member(db, data):    #로그인 성공시 myinfo로 이동
+            req.session['logined_uid'] = data.get('userid') # 세션에 아이디 저장하고
             redirect_url = '/member/myinfo'
 
         return RedirectResponse(url=redirect_url, status_code=303)
 
     except Exception as ex:
-        print(f'loginok 오류: {str(ex)}')
+        print(f'▶▶▶ loginok 오류: {str(ex)}')
         return RedirectResponse(url='/member/error', status_code=303)
 
 @member_router.get("/myinfo", response_class=HTMLResponse)
