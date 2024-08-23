@@ -29,7 +29,7 @@ class MemberService:
     def check_captcha(member):
         req_url = 'https://www.google.com/recaptcha/api/siteverify'
         # 구글 캡챠 비밀키 넣는 곳 - 퍼블릭에 커밋하지 말기!!
-        params = { 'secret': '6LeNoCsqAAAAANXHRQ_tB_vMVMWieAQVOYpDDAFd',
+        params = { 'secret': '',
                    'response': member.captcha }
         res = requests.get(req_url, params=params)
         result = res.json()
@@ -54,7 +54,6 @@ class MemberService:
     @staticmethod
     def selectone_member(db, userid):
         try:
-            # where 절 조건
             find_uid = Member.userid == userid
             stmt = select(Member).where(find_uid)
             result = db.execute(stmt).scalars()
@@ -62,7 +61,9 @@ class MemberService:
             return result
 
         except SQLAlchemyError as ex:
-            print(f'▶▶▶ selectone_member 오류발생 :  {str(ex)}')
+            print(f'▶▶▶ selectone_member 오류 발생 : {str(ex)}')
 
 
-# memberCRUD - 인서트 구현
+# memberCRUD
+# - 인서트 구현
+# - 로그인 리딩 구현

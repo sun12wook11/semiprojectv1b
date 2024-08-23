@@ -30,7 +30,7 @@ async def joinok(member: NewMember, db: Session = Depends(get_db)):
         # 캡챠 실패시 에러
         else:
             return RedirectResponse(url='/member/error', status_code=303)
-
+    # 이외 오류 뜨면 실행
     except Exception as ex:
         print(f'▷▷▷ joinok 오류발생: {str(ex)}')
         return RedirectResponse(url='/member/error', status_code=303)
@@ -63,30 +63,30 @@ async def logout(req: Request):
     req.session.clear() # 생성된 세션 객체 제거
     return RedirectResponse("/", status_code=303)
 
-@member_router.get("/myinfo", response_class=HTMLResponse)
+@member_router.get('/myinfo', response_class=HTMLResponse)
 async def myinfo(req: Request, db: Session = Depends(get_db)):
     try:
-        if 'logined_uid' not in req.session: # 로그인하지 않았다면
+        if 'logined_uid' not in req.session:  # 로그인하지 않았다면
             return RedirectResponse(url='/member/login', status_code=303)
 
-        # 로그인 했다면 아이디로 회원정보 조회후 myinfo에 출력
+        # 로그인 했다면 아이디로 회원정보 조회 후 myinfo에 출력
         myinfo = MemberService.selectone_member(db, req.session['logined_uid'])
-        print('-->', myinfo)
-        return templates.TemplateResponse("member/myinfo.html", {"request": req, 'myinfo': myinfo})
+        print('--> ', myinfo)
+        return templates.TemplateResponse('member/myinfo.html', {'request': req, 'myinfo': myinfo})
 
     except Exception as ex:
-        print(f'▷▷▷ myinfo 오류발생: {str(ex)}')
+        print(f'▷▷▷ myinfo 오류 발생 : {str(ex)}')
         return RedirectResponse(url='/member/error', status_code=303)
 
 
-
-@member_router.get("/error", response_class=HTMLResponse)
+@member_router.get('/error', response_class=HTMLResponse)
 async def error(req: Request):
-    return templates.TemplateResponse("member/error.html", {"request": req})
+    return templates.TemplateResponse('member/error.html', {'request': req})
 
-@member_router.get("/loginfail", response_class=HTMLResponse)
-async def loginfail(req: Request):
-    return templates.TemplateResponse("member/loginfail.html", {"request": req})
+
+@member_router.get('/loginfail', response_class=HTMLResponse)
+async def error(req: Request):
+    return templates.TemplateResponse('member/loginfail.html', {'request': req})
 
 
 
