@@ -5,26 +5,24 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="/static/css/project.css">
+<style>
+    table { width: 850px; margin: 10px auto;
+        border-collapse: collapse; table-layout: fixed }
+    th, td { border: 1px solid black; padding: 5px 8px;
+        text-align: center; height: 30px }
+    td:nth-child(2) { text-align: left; white-space: nowrap;
+        overflow: hidden; text-overflow: ellipsis }
+    thead td { border: none; }
+    thead td:first-child { text-align: left }
+    thead td:last-child { text-align: right }
+    select, input{ padding: 5px }
+    button { padding: 3.5px 5px }
 
-    <style>
-        table { width: 850px; margin: 10px auto;
-            border-collapse: collapse; table-layout: fixed }
-        th, td { border: 1px solid black; padding: 5px 8px;
-            text-align: center; height: 30px }
-        td:nth-child(2) { text-align: left; white-space: nowrap;
-            overflow: hidden; text-overflow: ellipsis }
-        thead td { border: none; }
-        thead td:first-child { text-align: left }
-        thead td:last-child { text-align: right }
-        select, input{ padding: 5px }
-        button { padding: 3.5px 5px }
-
-        .pagnation { width: 550px; margin: 0 auto }
-        div > ul { list-style: none; padding: 0; }
-        div > ul li { display: inline; padding: 0 15px; }
-        .cpg { color: red; font-size: 30px; font-weight: bold }
-    </style>
+    .pagnation { width: 550px; margin: 0 auto }
+    div > ul { list-style: none; padding: 0; }
+    div > ul li { display: inline; padding: 0 15px; }
+    .cpg { color: red; font-size: 30px; font-weight: bold }
+</style>
 {% endblock %}
 
 {% block main %}
@@ -52,50 +50,15 @@
             <th>작성일</th><th>조회</th></tr>
         </thead>
         <tbody>
-        <tr><td>1</td><td><a href="/board/view?bid=1">시간은 금이라구, 친구!</a></td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
-        <tr><td>1</td><td>시간은 금이라구, 친구!</td>
-            <td>zzyzzy</td><td>2024.07.30</td><td>123</td></tr>
+            {% for bd in bdlist %}
+            <tr>
+                <td>{{ bd.bno }}</td>
+                <td><a href="/board/view/{{ bd.bno }}">{{ bd.title }}</a></td>
+                <td>{{ bd.userid }}</td>
+                <td>{{ bd.regdate.strftime('%Y-%m-%d') }}</td>
+                <td>{{ bd.views }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <div class="pagnation">

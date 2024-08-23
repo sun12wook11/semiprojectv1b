@@ -57,7 +57,6 @@ class MemberService:
             find_uid = Member.userid == userid
             stmt = select(Member).where(find_uid)
             result = db.execute(stmt).scalars()
-
             return result
 
         except SQLAlchemyError as ex:
