@@ -5,7 +5,7 @@ from fastapi import Form
 from sqlalchemy import insert, select, and_
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.model.board import Board
+from app.model.gallery import Gallery, GalAttach
 from app.schema.gallery import NewGallery
 
 UPLOAD_PATH = 'C:/Java/nginx-1.26.2/html/cdn/img/'
@@ -38,16 +38,24 @@ async def process_upload(files):
 
 class GalleryService:
     @staticmethod
-    def select_board(db, cpg):
+    def insert_gallery(gal, attachs, db):
         try:
-            stbno = (cpg - 1)* 25
-            stmt = select(Board.bno,Board.title, Board.userid,
-                          Board.regdate, Board.views) \
-                    .order_by(Board.bno.desc()) \
-                    .offset(stbno).limit(25)
+            stmt = insert(Gallery).values(userid=gal.userid, title=gal.title, contents=gal.contents)
             result = db.execute(stmt)
+
+            # 방금 인서트 된 레코드의 기본키(PK) 값 가져오기: inserted_primary_key
+            inserted_gno = result.inserted_primary_key[0]
+            for attach in attachs:
+                data = {'fname': attach[0], 'fsize': attach[1],
+                        'gno': attach[2], }
+                stmt = insert(GalAttach).values(data)
+                result = db.execute(stmt)
+
+            db.commit()
+
             return result
 
         except SQLAlchemyError as ex:
             # 오류발생 시 실행 구간
-            print(f'▶▶▶ select_board 오류발생: {str(ex)}')
+            print(f'▶▶▶ insert_gallery 오류발생: {str(ex)}')
+            db.rollback()
