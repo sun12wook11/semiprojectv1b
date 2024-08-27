@@ -1,10 +1,7 @@
-import os
-from datetime import datetime
 from typing import List
-# from weakref import
 
-from fastapi import APIRouter, Request, UploadFile, Form, File
-from fastapi.params import Depends, File
+from fastapi import APIRouter, Request, UploadFile, File
+from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from starlette.responses import HTMLResponse, RedirectResponse
 from starlette.templating import Jinja2Templates
@@ -13,38 +10,13 @@ from app.dbfactory import get_db
 from app.schema.gallery import NewGallery
 from app.service.galleryservice import get_gallery_data, process_upload, GalleryService
 
-# from app.service.gallery import GalleryService
-
 gallery_router = APIRouter()
 templates = Jinja2Templates(directory='views/templates')
 
-# 페이징 알고리즘
-# 페이지당 게시글 수 : 25
-# 1page : 1 ~ 25
-# 2page : 26 ~ 50
-# 3page : 51 ~ 75
-# ...
-# npage : (n-1)*25+1 ~ n*25
-
-# 페이지네이션 알고리즘
-# 현재페이지에 따라 보여줄 페이지 블록 결정
-# select count(bno) 총게시글수, ceil(count(bno)/25)총페이지수 from board
-
-# ex) 총 페이지수 : 27일때
-# cpg = 1: 1 2 3 4 5 6 7 8 9 10
-# cpg = 3: 1 2 3 4 5 6 7 8 9 10
-# cpg = 9: 1 2 3 4 5 6 7 8 9 10
-# cpg = 11: 11 12 13 14 15 16 17 18 19 20
-# cpg = 17: 11 12 13 14 15 16 17 18 19 20
-# cpg = 23: 21 22 23 24 25 26 27
-# stpgb = ((cpg - 1) / 10) * 10 + 1
-
 @gallery_router.get('/list/{cpg}', response_class=HTMLResponse)
-async def list(req: Request,cpg: int, db: Session = Depends(get_db)):
+async def list(req: Request, db: Session = Depends(get_db)):
     try:
-
-        return templates.TemplateResponse('gallery/list.html',
-                                          {'request': req} )
+        return templates.TemplateResponse('gallery/list.html', {'request': req})
 
     except Exception as ex:
         print(f'▷▷▷ list 오류 발생 : {str(ex)}')
@@ -55,10 +27,10 @@ async def list(req: Request,cpg: int, db: Session = Depends(get_db)):
 async def write(req: Request):
     return templates.TemplateResponse('gallery/write.html', {'request': req})
 
+
 @gallery_router.post('/write', response_class=HTMLResponse)
 async def writeok(req: Request, gallery: NewGallery = Depends(get_gallery_data),
                   files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
-
     try:
         print(gallery)
         attachs = await process_upload(files)
@@ -66,10 +38,8 @@ async def writeok(req: Request, gallery: NewGallery = Depends(get_gallery_data),
         if GalleryService.insert_gallery(gallery, attachs, db):
             return RedirectResponse('/gallery/list/1', 303)
 
-
-
     except Exception as ex:
-        print(f'writeok 오류발생 {str(ex)}')
+        print(f'▷▷▷ writeok 오류발생 {str(ex)}')
         return RedirectResponse('/member/error', 303)
 
 
