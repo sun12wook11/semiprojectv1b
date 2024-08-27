@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block main %}
-<main>
-    <h2>회원정보</h2>
-    <div class="d-flex justify-content-center align-items-center" style="height: 65vh">
+    <main>
+        <h2>회원정보</h2>
+        <div class="d-flex justify-content-center align-items-center" style="height: 65vh">
         <table class="table w-25 table-bordered table-striped">
             {% for m in myinfo %}
             <tr><th>아이디</th><td>{{ m.userid }}</td></tr>
@@ -16,6 +16,6 @@
             <tr><th>가입일</th><td>{{ m.regdate.strftime('%Y-%m-%d %H:%M:%S') }}</td></tr>
             {% endfor %}
         </table>
-    </div>
-</main>
+        </div>
+    </main>
 {% endblock %}

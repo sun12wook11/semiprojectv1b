@@ -15,3 +15,13 @@ class Member(Base):
     name: Mapped[str]
     email: Mapped[str]
     regdate: Mapped[datetime] = mapped_column(default=datetime.now)
+
+
+
+
+
+
+
+
+
+

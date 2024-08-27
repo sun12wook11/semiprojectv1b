@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import List
 
 from fastapi import APIRouter, Request, UploadFile, File
@@ -8,15 +9,19 @@ from starlette.templating import Jinja2Templates
 
 from app.dbfactory import get_db
 from app.schema.gallery import NewGallery
-from app.service.galleryservice import get_gallery_data, process_upload, GalleryService
+from app.service.gallery import GalleryService
+from app.service.gallery import get_gallery_data, process_upload
 
 gallery_router = APIRouter()
 templates = Jinja2Templates(directory='views/templates')
 
 @gallery_router.get('/list/{cpg}', response_class=HTMLResponse)
-async def list(req: Request, db: Session = Depends(get_db)):
+async def glist(req: Request, cpg: int, db: Session = Depends(get_db)):
     try:
-        return templates.TemplateResponse('gallery/list.html', {'request': req})
+        galist = GalleryService.select_gallery(cpg, db)
+
+        return templates.TemplateResponse('gallery/list.html',
+                                  {'request': req, 'galist': galist})
 
     except Exception as ex:
         print(f'▷▷▷ list 오류 발생 : {str(ex)}')
@@ -30,7 +35,7 @@ async def write(req: Request):
 
 @gallery_router.post('/write', response_class=HTMLResponse)
 async def writeok(req: Request, gallery: NewGallery = Depends(get_gallery_data),
-                  files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
+            files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
     try:
         print(gallery)
         attachs = await process_upload(files)
@@ -43,6 +48,20 @@ async def writeok(req: Request, gallery: NewGallery = Depends(get_gallery_data),
         return RedirectResponse('/member/error', 303)
 
 
-@gallery_router.get('/view', response_class=HTMLResponse)
-async def view(req: Request):
-    return templates.TemplateResponse('gallery/view.html', {'request': req})
+@gallery_router.get('/view/{gno}', response_class=HTMLResponse)
+async def view(req: Request, gno: int, db: Session = Depends(get_db)):
+    try:
+        rows = GalleryService.selectone_gallery(gno, db)
+
+        gallery_dict = defaultdict(list)
+        for row in rows:
+            gallery, gal_attach = row
+            gallery_dict[gallery].append(gal_attach)
+
+        return templates.TemplateResponse('gallery/view.html',
+                      {'request': req, 'galleries': gallery_dict.items()})
+
+
+    except Exception as ex:
+        print(f'▷▷▷ view 오류발생 {str(ex)}')
+        return RedirectResponse('/member/error', 303)

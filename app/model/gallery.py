@@ -24,3 +24,13 @@ class GalAttach(Base):
     fname: Mapped[str] = mapped_column(nullable=False)
     fsize: Mapped[int] = mapped_column(default=0)
     regdate: Mapped[datetime] = mapped_column(default=datetime.now)
+
+
+
+
+
+
+
+
+
+

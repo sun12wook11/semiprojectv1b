@@ -15,3 +15,14 @@ class Board(Base):
     regdate: Mapped[datetime] = mapped_column(default=datetime.now)
     views: Mapped[int] = mapped_column(default=0)
     contents: Mapped[str]
+
+
+
+
+
+
+
+
+
+
+
