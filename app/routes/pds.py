@@ -17,11 +17,11 @@ async def write(req: Request):
     return templates.TemplateResponse('pds/write.html', {'request': req})
 
 
-@pds_router.get('/view/{pno}', response_class=HTMLResponse)
+@pds_router.get('/view', response_class=HTMLResponse)
 async def write(req: Request):
     return templates.TemplateResponse('pds/view.html', {'request': req})
 
 
-@pds_router.get('/list/{cpg}', response_class=HTMLResponse)
+@pds_router.get('/list', response_class=HTMLResponse)
 async def write(req: Request):
     return templates.TemplateResponse('pds/list.html', {'request': req})

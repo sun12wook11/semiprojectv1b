@@ -33,7 +33,7 @@ app.mount('/static', StaticFiles(directory='views/static'),name='static')
 app.include_router(member_router, prefix='/member')
 app.include_router(board_router, prefix='/board')
 app.include_router(gallery_router, prefix='/gallery')
-app.include_router(pds_router, prefix='/gallery')
+app.include_router(pds_router, prefix='/pds')
 
 
 @app.get("/", response_class=HTMLResponse)
